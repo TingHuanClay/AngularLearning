@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { Todo } from './todo.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -7,14 +9,14 @@ export class TodoListService {
 
   constructor() { }
 
-  private list: string[] = [];
+  private list: Todo[] = [];
 
   /**
    * Add Todo List
    */
   add(title: string): void {
     if(title || title.trim()) {
-      this.list.push(title);
+      this.list.push(new Todo(title));
     }
   }
 
@@ -23,7 +25,7 @@ export class TodoListService {
    * @returns {string[]}
    * @memberof TodoListService
    */
-  getList(): string[] {
+  getList(): Todo[] {
     return this.list;
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TodoListService} from './todo-list.service';
 
+import { Todo } from './todo.model';
+
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -10,14 +12,14 @@ export class TodoListComponent implements OnInit {
 
   constructor(private todoListService: TodoListService) { }
   // previous line is exactly the same as following 3 lines
-
   // private todoListService: TodoListService;
   // constructor(private todoListService: TodoListService) {
   //   this.todoListService = todoListService;
   // }
 
-
-  ngOnInit(): void {
+  // ngOnInit(): void {
+  // }
+  ngOnInit() {
   }
 
   /**
@@ -38,10 +40,10 @@ export class TodoListComponent implements OnInit {
 
   /**
    * get the todo list
-   * @returns {string[]}
+   * @returns {Todo[]}
    * @memberof TodoListComponent
    */
-  getList(): string[] {
+  getList(): Todo[] {
     return this.todoListService.getList();
   }
 }
