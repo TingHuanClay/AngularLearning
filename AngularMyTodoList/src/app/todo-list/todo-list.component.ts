@@ -12,4 +12,13 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Add Todo List
+   * @param {HTMLInputElement} inputRef - TextBox
+   * @memberof TodoListComponent
+   */
+  addTodo(inputRef: HTMLInputElement): void {
+    console.log(inputRef.value);
+    inputRef.value = '';
+  }
 }
