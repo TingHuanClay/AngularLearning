@@ -17,8 +17,6 @@ export class TodoListComponent implements OnInit {
   //   this.todoListService = todoListService;
   // }
 
-  // ngOnInit(): void {
-  // }
   ngOnInit() {
   }
 
@@ -28,9 +26,6 @@ export class TodoListComponent implements OnInit {
    * @memberof TodoListComponent
    */
   addTodo(inputRef: HTMLInputElement): void {
-    // console.log(inputRef.value);
-    // inputRef.value = '';
-
     const todo = inputRef.value.trim();
     if (todo) {
       this.todoListService.add(todo);
@@ -55,5 +50,54 @@ export class TodoListComponent implements OnInit {
    */
   remove(index: number): void {
     this.todoListService.remove(index);
+  }
+
+  /**
+   * edit the todo item
+   *
+   * @param {Todo} todo
+   * @memberof TodoListComponent
+   */
+  edit(todo: Todo): void {
+    todo.editable = true;
+  }
+
+  /**
+   * Update the todo item
+   *
+   * @param {Todo} todo - original todo item object
+   * @param {string} newTitle - new title for the todo object
+   * @memberof TodoListComponent
+   */
+  update(todo: Todo, newTitle: string): void {
+  
+    if (!todo.editing) {
+      return;
+    }
+  
+    const title = newTitle.trim();
+  
+    // check the validity of the title
+    if (title) {
+      todo.setTitle(title);
+      todo.editable = false;
+  
+    // delete the item if New title is null or empty
+    } else {
+      const index = this.getList().indexOf(todo);
+      if (index !== -1) {
+        this.remove(index);
+      }
+    }
+  }
+
+  /**
+   * Cancel Editing
+   *
+   * @param {Todo} todo - the todo item
+   * @memberof TodoListComponent
+   */
+  cancelEditing(todo: Todo): void {
+    todo.editable = false;
   }
 }

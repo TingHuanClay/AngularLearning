@@ -19,6 +19,14 @@ export class Todo {
      */
     private completed = false;
 
+    /**
+     * status is Editing or Not 
+     *
+     * @private
+     * @memberof Todo
+     */
+    private editMode = false;
+
     /** 
      * Create an insteance of Todo 
      */
@@ -36,6 +44,16 @@ export class Todo {
      */
     getTitle(): string {
         return this.title;
+    }
+
+    /**
+    * update the title of the todo item
+    *
+    * @param {string} title
+    * @memberof Todo
+    */
+    setTitle(title: string): void {
+        this.title = title;
     }
 
     /**
@@ -59,5 +77,25 @@ export class Todo {
      */
     toggleCompletion(): void {
         this.completed = !this.completed;
+    }
+
+    /**
+     * get editing status for the item
+     *
+     * @readonly
+     * @type {boolean}
+     * @memberof Todo
+     */
+    get editing(): boolean {
+        return this.editMode;
+    }
+    
+    /**
+     * setting the edit status
+     *
+     * @memberof Todo
+     */
+    set editable(bl: boolean) {
+        this.editMode = bl;
     }
 }
