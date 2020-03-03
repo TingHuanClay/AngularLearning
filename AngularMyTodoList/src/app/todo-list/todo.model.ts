@@ -67,8 +67,6 @@ export class Todo {
         return this.completed;
     }
 
-    
-
     /**
      * Change the status of complete
      *
@@ -97,5 +95,15 @@ export class Todo {
      */
     set editable(bl: boolean) {
         this.editMode = bl;
+    }
+
+    /**
+     * set completed value
+     *
+     * @param {boolean} completed
+     * @memberof Todo
+     */
+    setCompleted(completed: boolean): void {
+        this.completed = completed;
     }
 }

@@ -178,4 +178,36 @@ export class TodoListComponent implements OnInit {
   removeCompleted(): void {
     this.todoListService.removeCompleted();
   }
+
+  /**
+   * get all todo items
+   *
+   * @returns {Todo[]}
+   * @memberof TodoListComponent
+   */
+  getAllList(): Todo[] {
+    return this.todoListService.getList();
+  }
+
+  /**
+   * check are are todo item completed or not
+   *
+   * @returns {boolean}
+   * @memberof TodoListComponent
+   */
+  allCompleted(): boolean {
+    return this.getAllList().length === this.getCompletedList().length;
+  }
+
+  /**
+   * set all todo item to Completed or Not
+   *
+   * @param {boolean} completed - 已完成/未完成
+   * @memberof TodoListComponent
+   */
+  setAllTo(completed: boolean): void {
+    this.getAllList().forEach((todo) => {
+      todo.setCompleted(completed);
+    });
+  }
 }
