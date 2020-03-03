@@ -28,4 +28,13 @@ export class TodoListService {
   getList(): Todo[] {
     return this.list;
   }
+
+  /**
+   * remove the i-th item in todo list
+   * @param {number} index
+   * @memberof TodoListService
+   */
+  remove(index: number): void {
+    this.list.splice(index, 1);
+  }
 }

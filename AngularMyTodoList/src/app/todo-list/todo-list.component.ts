@@ -46,4 +46,14 @@ export class TodoListComponent implements OnInit {
   getList(): Todo[] {
     return this.todoListService.getList();
   }
+
+  /**
+   * remove the i-th item in todo list
+   *
+   * @param {number} index - index of the item
+   * @memberof TodoListComponent
+   */
+  remove(index: number): void {
+    this.todoListService.remove(index);
+  }
 }
