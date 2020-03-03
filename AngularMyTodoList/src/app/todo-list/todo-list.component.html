@@ -42,6 +42,35 @@
         <strong>{{ getRemainingList().length }}</strong>
         {{ getRemainingList().length > 1 ? 'items' : 'item'}} left
       </span>
+
+      <ul class="filters">
+        <li>
+          <a
+            href="javascript:;"
+            [class.selected]="checkStatus(todoStatusType.All)"
+            (click)="setStatus(todoStatusType.All)"
+          > ALL 
+          </a>
+        </li>
+        <li>
+          <a
+            href="javascript:;"
+            [class.selected]="checkStatus(todoStatusType.Active)"
+            (click)="setStatus(todoStatusType.Active)"
+          > Active 
+          </a>
+        </li>
+        <li>
+          <a
+            href="javascript:;"
+            [class.selected]="checkStatus(todoStatusType.Completed)"
+            (click)="setStatus(todoStatusType.Completed)"
+          > Completed 
+          </a>
+        </li>
+
+      </ul>
+
     </footer>
   
   </section>

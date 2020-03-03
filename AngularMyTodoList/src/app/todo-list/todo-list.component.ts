@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TodoListService} from './todo-list.service';
 
 import { Todo } from './todo.model';
+import { TodoStatusType } from './todo-status-type.enum';
 
 @Component({
   selector: 'app-todo-list',
@@ -19,6 +20,21 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  /**
+   * enum type of the todo list
+   *
+   * @memberof TodoListComponent
+   */
+  todoStatusType = TodoStatusType;
+
+  /**
+   * current status of the todo list
+   *
+   * @private
+   * @memberof TodoListComponent
+   */
+  private status = TodoStatusType.All;
 
   /**
    * Add Todo List
@@ -39,7 +55,19 @@ export class TodoListComponent implements OnInit {
    * @memberof TodoListComponent
    */
   getList(): Todo[] {
-    return this.todoListService.getList();
+    let list: Todo[] = [];
+    switch (this.status) {
+      case TodoStatusType.Active:
+        list = this.getRemainingList();
+        break;
+      case TodoStatusType.Completed:
+        list = this.getCompletedList();
+        break;
+      default:
+        list = this.todoListService.getList();
+        break;
+    }
+    return list;
   }
 
   /**
@@ -109,5 +137,36 @@ export class TodoListComponent implements OnInit {
    */
   getRemainingList(): Todo[] {
     return this.todoListService.getWithCompleted(false);
+  }
+
+  /**
+   * get the sublist of the todo list which are completed
+   *
+   * @returns {Todo[]}
+   * @memberof TodoListComponent
+   */
+  getCompletedList(): Todo[] {
+    return this.todoListService.getWithCompleted(true);
+  }
+
+  /**
+   * set the status of the todo list
+   *
+   * @param {number} status 
+   * @memberof TodoListComponent
+   */
+  setStatus(status: number): void {
+    this.status = status;
+  }
+
+  /**
+   * check the status
+   *
+   * @param {number} status - 
+   * @returns {boolean}
+   * @memberof TodoListComponent
+   */
+  checkStatus(status: number): boolean {
+    return this.status === status;
   }
 }
