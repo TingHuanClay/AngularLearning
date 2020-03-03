@@ -100,4 +100,14 @@ export class TodoListComponent implements OnInit {
   cancelEditing(todo: Todo): void {
     todo.editable = false;
   }
+
+  /**
+   * filter the todo list with status is Completed or Not
+   *
+   * @returns {Todo[]}
+   * @memberof TodoListComponent
+   */
+  getRemainingList(): Todo[] {
+    return this.todoListService.getWithCompleted(false);
+  }
 }

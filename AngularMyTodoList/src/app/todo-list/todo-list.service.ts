@@ -37,4 +37,15 @@ export class TodoListService {
   remove(index: number): void {
     this.list.splice(index, 1);
   }
+
+  /**
+   * filter the todo list with status is Completed or Not
+   *
+   * @param {boolean} completed
+   * @returns {Todo[]}
+   * @memberof TodoListService
+   */
+  getWithCompleted(completed: boolean): Todo[] {
+    return this.list.filter(todo => todo.done === completed);
+  }
 }
