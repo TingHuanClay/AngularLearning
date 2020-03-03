@@ -48,4 +48,13 @@ export class TodoListService {
   getWithCompleted(completed: boolean): Todo[] {
     return this.list.filter(todo => todo.done === completed);
   }
+
+  /**
+   * remove all completed items
+   *
+   * @memberof TodoListService
+   */
+  removeCompleted(): void {
+    this.list = this.getWithCompleted(false);
+  }
 }

@@ -169,4 +169,13 @@ export class TodoListComponent implements OnInit {
   checkStatus(status: number): boolean {
     return this.status === status;
   }
+
+  /**
+   * remove all completed items
+   *
+   * @memberof TodoListComponent
+   */
+  removeCompleted(): void {
+    this.todoListService.removeCompleted();
+  }
 }
