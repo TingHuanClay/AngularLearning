@@ -40,7 +40,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  }//,
+  },
+  {
+    path: 'feature',
+    loadChildren: './feature/feature.module#FeatureModule'
+  }
+  //,
   // {
   //   path: '**',
   //   redirectTo: 'login',
