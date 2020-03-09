@@ -8,8 +8,14 @@ import { Observable } from 'rxjs';
 export class LayoutGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    state: RouterStateSnapshot
+    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    
+      const canActivate = next.queryParams.role == "Admin";
+      if (!canActivate) {
+        alert('Authentication Failed!');
+      }
+      return canActivate;
   }
   
 }
