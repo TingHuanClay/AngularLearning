@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router) { }
 
+  name = '';
   ngOnInit(): void {
   }
 
